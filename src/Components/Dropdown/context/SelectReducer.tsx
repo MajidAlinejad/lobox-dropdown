@@ -5,6 +5,16 @@ export const SelectReducer = (state: SelectState, action: SelectAction): SelectS
 				...state,
 				theme: action.value,
 			};
+		case "SET_IS_OPEN":
+			return {
+				...state,
+				isOpen: action.value,
+			};
+		case "SET_VALUE":
+			return {
+				...state,
+				value: action.value,
+			};
 
 		default:
 			return state;

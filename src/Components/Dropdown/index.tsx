@@ -1,8 +1,11 @@
 import { FC } from "react";
 import Option from "./components/OptionItem";
 import { createUseStyles, useTheme, ThemeProvider } from "react-jss";
+import SelectProvider from "./context/SelectContext";
+import Selector from "./components/Selector";
+import OptionContainer from "./components/OptionContainer";
 
-interface IDropdownType {}
+interface IDropdownType extends WithChildren {}
 
 const theme = {
 	colorPrimary: "green",
@@ -26,18 +29,14 @@ const useStyles = createUseStyles({
 	},
 });
 
-const Dropdown: FC<IDropdownType> = ({}) => {
+const Dropdown: FC<IDropdownType> = ({ children }) => {
 	const classes = useStyles();
 	return (
 		<>
 			<ThemeProvider theme={theme}>
-				<select className={classes.myButton}>
-					<Option label="new" value="oi" />
-					<Option label="new" value="oi" />
-					<Option label="new" value="oi" />
-					<Option label="new" value="oi" />
-					<Option label="new" value="oi" />
-				</select>
+				<SelectProvider>
+					<>{children}</>
+				</SelectProvider>
 			</ThemeProvider>
 		</>
 	);

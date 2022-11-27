@@ -1,15 +1,27 @@
-import { createContext, Dispatch, FC, SetStateAction, useState } from "react";
+import { createContext, FC, useReducer, Dispatch } from "react";
+import { SelectReducer } from "./SelectReducer";
 
-interface ISelectContextType<T> {}
+const initialState: SelectState = {
+	isOpen: false,
+	theme: undefined,
+	value: undefined,
+};
+interface ISelectContextType {
+	state: SelectState;
+	dispatch: Dispatch<SelectAction>;
+}
 
-export const SelectContext = createContext<ISelectContextType<unknown>>({});
+export const SelectContext = createContext<ISelectContextType>({
+	state: initialState,
+	dispatch: (initialState) => initialState,
+});
 
 interface ISelectProviderType {
 	children: JSX.Element | JSX.Element[];
-	defaultValue: string;
 }
 
-const SelectProvider: FC<ISelectProviderType> = ({ children, defaultValue }) => {
-	return <SelectContext.Provider value={{}}>{children}</SelectContext.Provider>;
+const SelectProvider: FC<ISelectProviderType> = ({ children }) => {
+	const [state, dispatch] = useReducer(SelectReducer, initialState);
+	return <SelectContext.Provider value={{ state, dispatch }}>{children}</SelectContext.Provider>;
 };
 export default SelectProvider;
