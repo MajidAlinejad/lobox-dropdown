@@ -1,9 +1,10 @@
+type SelectedValue = { value: string; label: string };
 interface SelectState {
 	isOpen: boolean;
-	value: string | undefined;
 	theme: any;
+	selected: SelectedValue | undefined;
 }
-type SelectAction = { type: "SET_THEME"; value: any } | { type: "SET_IS_OPEN"; value: boolean } | { type: "SET_VALUE"; value: string };
+type SelectAction = { type: "SET_THEME"; value: any } | { type: "SET_IS_OPEN"; value: boolean } | { type: "SET_SELECTED"; value?: SelectedValue };
 
 interface WithChildren {
 	children: JSX.Element | JSX.Element[];

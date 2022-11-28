@@ -1,5 +1,6 @@
 import useSelectDispatch from "Components/Dropdown/hooks/useSelectDispatch";
 import useSelectState from "Components/Dropdown/hooks/useSelectState";
+import useStyles from "Components/Dropdown/styles";
 import { FC, useRef, useEffect, Children, useState } from "react";
 
 interface IOptionContainerType extends WithChildren {}
@@ -16,6 +17,7 @@ const OptionContainer: FC<IOptionContainerType> = ({ children }) => {
 	const dispatch = useSelectDispatch();
 	const [navigateIndex, setNavigateIndex] = useState(0);
 	const containerRef = useRef<HTMLUListElement>(null);
+	const classes = useStyles();
 
 	useEffect(() => {
 		isOpen && containerRef.current?.focus();
@@ -23,9 +25,9 @@ const OptionContainer: FC<IOptionContainerType> = ({ children }) => {
 	}, [isOpen]);
 
 	const setValue = () => {
-		const childs = Children.map<any, React.ReactComponentElement<FC<IOptionType>>>(children, (child) => (child.type.displayName === "Option" ? child.props.value : null));
+		const childs = Children.map<IOptionType | null, React.ReactComponentElement<FC<IOptionType>>>(children, (child) => (child.type.displayName === "Option" ? child.props : null));
 		const items = childs.filter((item) => item !== null);
-		dispatch({ type: "SET_VALUE", value: items[navigateIndex] });
+		dispatch({ type: "SET_SELECTED", value: items[navigateIndex] });
 		timeOutSession = setTimeout(() => {
 			closeList();
 			clearTimeout(timeOutSession);
@@ -48,7 +50,7 @@ const OptionContainer: FC<IOptionContainerType> = ({ children }) => {
 	};
 
 	return (
-		<div hidden={!isOpen}>
+		<div hidden={!isOpen} className={classes.optionWrapper}>
 			<ul ref={containerRef} tabIndex={1} onKeyDown={(e) => navigateAndSetValue(e.key)}>
 				{Children.map<any, React.ReactComponentElement<FC<IOptionType>>>(children, (child, inx) => (
 					<li style={{ backgroundColor: navigateIndex === inx ? "red" : "" }}>{child.type.displayName === "Option" ? child : <></>}</li>

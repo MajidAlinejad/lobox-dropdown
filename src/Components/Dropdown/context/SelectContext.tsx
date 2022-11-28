@@ -4,7 +4,7 @@ import { SelectReducer } from "./SelectReducer";
 const initialState: SelectState = {
 	isOpen: false,
 	theme: undefined,
-	value: undefined,
+	selected: undefined,
 };
 interface ISelectContextType {
 	state: SelectState;

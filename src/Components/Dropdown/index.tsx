@@ -1,44 +1,32 @@
-import { FC } from "react";
-import Option from "./components/OptionItem";
-import { createUseStyles, useTheme, ThemeProvider } from "react-jss";
+import { FC, useEffect } from "react";
+import { ThemeProvider } from "react-jss";
 import SelectProvider from "./context/SelectContext";
-import Selector from "./components/Selector";
-import OptionContainer from "./components/OptionContainer";
+import useSelectState from "./hooks/useSelectState";
+import useStyles, { theme } from "./styles";
 
-interface IDropdownType extends WithChildren {}
+interface IDropdownType extends WithChildren {
+	onSelect: (value: string, label: string) => void;
+}
 
-const theme = {
-	colorPrimary: "green",
-};
-
-const useStyles = createUseStyles({
-	myButton: {
-		color: theme.colorPrimary,
-		margin: {
-			top: 5,
-			right: 0,
-			bottom: 0,
-			left: "1rem",
-		},
-		"& span": {
-			fontWeight: "bold",
-		},
-	},
-	myLabel: {
-		fontStyle: "italic",
-	},
-});
-
-const Dropdown: FC<IDropdownType> = ({ children }) => {
+const Dropdown: FC<IDropdownType> = ({ children, onSelect }) => {
 	const classes = useStyles();
+
+	const Organization = () => {
+		const { selected } = useSelectState();
+		useEffect(() => {
+			selected && onSelect(selected?.value, selected?.label);
+		}, [selected]);
+
+		return <>{children}</>;
+	};
 	return (
-		<>
+		<div className={classes.wrapper}>
 			<ThemeProvider theme={theme}>
 				<SelectProvider>
-					<>{children}</>
+					<Organization />
 				</SelectProvider>
 			</ThemeProvider>
-		</>
+		</div>
 	);
 };
 

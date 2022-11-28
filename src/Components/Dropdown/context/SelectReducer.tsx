@@ -10,10 +10,10 @@ export const SelectReducer = (state: SelectState, action: SelectAction): SelectS
 				...state,
 				isOpen: action.value,
 			};
-		case "SET_VALUE":
+		case "SET_SELECTED":
 			return {
 				...state,
-				value: action.value,
+				selected: action.value,
 			};
 
 		default:
