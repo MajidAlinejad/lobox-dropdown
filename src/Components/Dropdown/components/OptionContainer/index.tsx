@@ -53,7 +53,9 @@ const OptionContainer: FC<IOptionContainerType> = ({ children }) => {
 		<div hidden={!isOpen} className={classes.optionWrapper}>
 			<ul ref={containerRef} tabIndex={1} onKeyDown={(e) => navigateAndSetValue(e.key)}>
 				{Children.map<any, React.ReactComponentElement<FC<IOptionType>>>(children, (child, inx) => (
-					<li style={{ backgroundColor: navigateIndex === inx ? "red" : "" }}>{child.type.displayName === "Option" ? child : <></>}</li>
+					<li onMouseOver={() => setNavigateIndex(inx)} onClick={setValue} style={{ backgroundColor: navigateIndex === inx ? "red" : "" }}>
+						{child.type.displayName === "Option" ? child : <></>}
+					</li>
 				))}
 			</ul>
 		</div>
