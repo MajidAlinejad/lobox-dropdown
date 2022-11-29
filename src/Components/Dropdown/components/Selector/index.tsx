@@ -2,6 +2,7 @@ import useSelectDispatch from "Components/Dropdown/hooks/useSelectDispatch";
 import useStyles from "Components/Dropdown/styles";
 import { FC, useEffect, useRef } from "react";
 import useSelectState from "./../../hooks/useSelectState";
+import { ReactComponent as ArrowIcon } from "Components/Dropdown/icons/arrow.svg";
 
 interface ISelectorType {
 	placeholder: string;
@@ -30,6 +31,7 @@ const Selector: FC<ISelectorType> = ({ placeholder }) => {
 		<>
 			<button className={classes.selector} ref={selectorRef} onClick={() => toggleDropDown()} onKeyDown={(e) => e.key === "ArrowDown" && toggleDropDown(true)} tabIndex={1}>
 				{selected ? selected.label : placeholder}
+				<ArrowIcon width={15} height={15} />
 			</button>
 		</>
 	);

@@ -6,11 +6,7 @@ import useSelectDispatch from "./hooks/useSelectDispatch";
 import useSelectState from "./hooks/useSelectState";
 import useStyles, { theme } from "./styles";
 
-interface IDropdownType extends WithChildren {
-	onSelect: (value: string, label: string) => void;
-}
-
-const Dropdown: FC<IDropdownType> = ({ children, onSelect }) => {
+const Dropdown: FC<IDropdownType> = ({ children, onSelect, ...rest }) => {
 	const classes = useStyles();
 
 	const Organization = () => {
@@ -29,7 +25,7 @@ const Dropdown: FC<IDropdownType> = ({ children, onSelect }) => {
 		}, [selected]);
 
 		return (
-			<div ref={ref} className={classes.wrapper}>
+			<div {...rest} ref={ref} className={classes.wrapper}>
 				{children}
 			</div>
 		);

@@ -1,42 +1,34 @@
 import { Canvas, Meta, Story } from "@storybook/addon-docs";
 
 import Dropdown from "../";
+import { Template } from "./index.stories";
 
 <Meta title="Doc/Dropdown" component={Dropdown} />
 
-export const Template = (args) => <Dropdown {...args} />;
-
 # Dropdown
 
-With `MDX`, we can define a story for `Dropdown` right in the middle of our
-Markdown documentation.
+The Main Organization for Drop Down Component is `Dropdown`, we have two Type of child node :<br/>
 
-<!--
+#### `Selector`
+
+The select trigger component for dropdown.
+
+#### `OptionContainer`<br/>
+
+The Container for options.It handle position and z-index.
+
+#### `OptionItem`<br/>
+
+The options that take two parameter : `name` and `value`
+
 <Canvas>
-  <Story
-    name="Unchecked"
-    args={{
-      label: 'Unchecked',
-    }}>
-    {Template.bind({})}
-   </Story>
-
-  <Story
-    name="Checked"
-    args={{
-      label: 'Unchecked',
-      checked: true,
-    }}>
-    {Template.bind({})}
-   </Story>
-
-  <Story
-    name="Secondary"
-    args={{
-      label: 'Secondary',
-      checked: true,
-      appearance: 'secondary',
-    }}>
-    {Template.bind({})}
-   </Story>
-</Canvas> -->
+	<Story
+		name="Dropdown"
+		args={{
+			placeholder: "Please select an option",
+			onSelect: (value, lable) => console.log(value, lable),
+		}}
+	>
+		{Template.bind({})}
+	</Story>
+</Canvas>

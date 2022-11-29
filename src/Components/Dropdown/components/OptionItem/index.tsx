@@ -9,7 +9,7 @@ const Option: FC<IOptionType> = ({ label, value }) => {
 
 	return (
 		<button role={"option"} value={value} className={classes.optionItem}>
-			<span>{label}</span>
+			<span>{selected?.value === value ? "Yeaah, " + label : label}</span>
 			<span>{selected?.value === value ? <CheckIcon width={15} height={15} /> : <></>}</span>
 		</button>
 	);

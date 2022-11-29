@@ -14,3 +14,7 @@ interface IOptionType {
 	label: string;
 	value: string;
 }
+
+interface IDropdownType extends React.HTMLAttributes<HTMLDivElement>, WithChildren {
+	onSelect: (value: string, label: string) => void;
+}

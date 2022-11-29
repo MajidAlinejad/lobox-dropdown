@@ -9,6 +9,7 @@ const useStyles = createUseStyles({
 		display: "block",
 		width: "100%",
 		minWidth: "200px",
+		position: "relative",
 	},
 	selector: {
 		width: "100%",
@@ -18,6 +19,7 @@ const useStyles = createUseStyles({
 		alignItems: "center",
 		padding: "10px 8px",
 		border: "2px solid #8292d0",
+		justifyContent: "space-between",
 		background: "white",
 		"&:focus": {
 			boxShadow: "0px 0px 1px 3px #e0deff52",
@@ -29,8 +31,9 @@ const useStyles = createUseStyles({
 		borderRadius: "8px",
 		overflow: "hidden",
 		borderWidth: 0,
-		position: "relative",
+		position: "absolute",
 		marginTop: "5px",
+		zIndex: 88,
 		outlineWidth: 0,
 		boxShadow: "0px 0px 2px #00000042",
 		"& ul": {
@@ -49,10 +52,23 @@ const useStyles = createUseStyles({
 				padding: "4px 8px",
 				borderRadius: "8px",
 			},
-
 			"&:focus": {
 				borderWidth: 0,
 				outlineWidth: 0,
+			},
+			"&::-webkit-scrollbar": {
+				width: "6px",
+			},
+			"&::-webkit-scrollbar-track": {
+				background: "#f1f1f100",
+				margin: "10px 0px",
+			},
+			"&::-webkit-scrollbar-thumb": {
+				background: "rgb(207, 207, 207)",
+				borderRadius: "10px",
+				"&:hover": {
+					background: "gray",
+				},
 			},
 		},
 	},
