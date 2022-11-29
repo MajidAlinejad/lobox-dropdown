@@ -12,7 +12,7 @@ module.exports = {
 		ecmaVersion: "latest",
 		sourceType: "module",
 	},
-	plugins: ["react", "react-hooks", "@typescript-eslint", "prettier"],
+	plugins: ["react", "react-hooks", "@typescript-eslint"],
 	rules: {
 		"react/prop-types": "off",
 	},
