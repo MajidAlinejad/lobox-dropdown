@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/lobox-dropdown/static/css/main.5ee8617c.css",
+    "main.js": "/lobox-dropdown/static/js/main.0b9dae17.js",
+    "static/js/787.e8d2a437.chunk.js": "/lobox-dropdown/static/js/787.e8d2a437.chunk.js",
+    "index.html": "/lobox-dropdown/index.html",
+    "static/media/arrow.svg": "/lobox-dropdown/static/media/arrow.c371058b1081af0d4816c7acbff87ccf.svg",
+    "static/media/check.svg": "/lobox-dropdown/static/media/check.fb78fdeb0142fcf7a0ee712da78c0551.svg",
+    "main.5ee8617c.css.map": "/lobox-dropdown/static/css/main.5ee8617c.css.map",
+    "main.0b9dae17.js.map": "/lobox-dropdown/static/js/main.0b9dae17.js.map",
+    "787.e8d2a437.chunk.js.map": "/lobox-dropdown/static/js/787.e8d2a437.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5ee8617c.css",
+    "static/js/main.0b9dae17.js"
+  ]
+}
