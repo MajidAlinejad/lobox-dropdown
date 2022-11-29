@@ -10,12 +10,40 @@ function App() {
 		<div className="App">
 			<div className="drop-down-wrapper">
 				<Dropdown onSelect={(value, lable) => console.log(value, lable)}>
-					<Selector>select</Selector>
+					<Selector placeholder="Please select an option" />
 					<OptionContainer>
 						<Option label="new1" value="oi1" />
 						<Option label="new2" value="oi2" />
 						<Option label="new3" value="oi3" />
 						<Option label="new4" value="oi4" />
+
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
+						<Option label="new5" value="oi5" />
 						<Option label="new5" value="oi5" />
 					</OptionContainer>
 				</Dropdown>

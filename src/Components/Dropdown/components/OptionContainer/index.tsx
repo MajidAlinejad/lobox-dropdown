@@ -20,8 +20,12 @@ const OptionContainer: FC<IOptionContainerType> = ({ children }) => {
 	const classes = useStyles();
 
 	useEffect(() => {
-		isOpen && containerRef.current?.focus();
-		return () => {};
+		let time = setTimeout(() => {
+			isOpen && containerRef.current?.focus();
+		}, 50);
+		return () => {
+			clearTimeout(time);
+		};
 	}, [isOpen]);
 
 	const setValue = () => {
@@ -33,15 +37,16 @@ const OptionContainer: FC<IOptionContainerType> = ({ children }) => {
 			clearTimeout(timeOutSession);
 		}, 50);
 	};
+
 	const closeList = () => {
 		dispatch({ type: "SET_IS_OPEN", value: false });
 	};
-	const navigateAndSetValue = (key: string) => {
+
+	const navigateAndSetValue = (key: string, e: React.KeyboardEvent<HTMLUListElement>) => {
 		if (isKeyAllowed(key)) {
-			const childCount = Array.isArray(children) ? children.length - 1 : !!children;
 			const keyOptions = {
-				ArrowDown: () => setNavigateIndex((prev) => (prev === childCount ? childCount : prev + 1)),
-				ArrowUp: () => setNavigateIndex((prev) => (prev === 0 ? prev : prev - 1)),
+				ArrowDown: () => navigateDown(e),
+				ArrowUp: () => navigateUp(e),
 				Enter: setValue,
 				Escape: closeList,
 			};
@@ -49,11 +54,28 @@ const OptionContainer: FC<IOptionContainerType> = ({ children }) => {
 		}
 	};
 
+	const navigateDown = (e: React.KeyboardEvent<HTMLUListElement>) => {
+		const wrapperRect = containerRef.current?.getClientRects().item(0)?.bottom || 0;
+		const selectedRect = containerRef.current?.children.item(navigateIndex)?.getClientRects().item(0)?.bottom || 0;
+		const lock = wrapperRect - 25 <= selectedRect ? false : true;
+		lock && e.preventDefault();
+		const childCount = Array.isArray(children) ? children.length - 1 : !!children;
+		setNavigateIndex((prev) => (prev === childCount ? childCount : prev + 1));
+	};
+
+	const navigateUp = (e: React.KeyboardEvent<HTMLUListElement>) => {
+		setNavigateIndex((prev) => (prev === 0 ? prev : prev - 1));
+		const wrapperRect = containerRef.current?.getClientRects().item(0)?.top || 0;
+		const selectedRect = containerRef.current?.children.item(navigateIndex)?.getClientRects().item(0)?.top || 0;
+		const lock = wrapperRect + 25 >= selectedRect ? false : true;
+		lock && e.preventDefault();
+	};
+
 	return (
 		<div hidden={!isOpen} className={classes.optionWrapper}>
-			<ul ref={containerRef} tabIndex={1} onKeyDown={(e) => navigateAndSetValue(e.key)}>
+			<ul ref={containerRef} tabIndex={1} onKeyDown={(e) => navigateAndSetValue(e.key, e)}>
 				{Children.map<any, React.ReactComponentElement<FC<IOptionType>>>(children, (child, inx) => (
-					<li onMouseOver={() => setNavigateIndex(inx)} onClick={setValue} style={{ backgroundColor: navigateIndex === inx ? "red" : "" }}>
+					<li onMouseOver={() => setNavigateIndex(inx)} data-key={navigateIndex} onClick={setValue} className={navigateIndex === inx ? classes.hover : ""}>
 						{child.type.displayName === "Option" ? child : <></>}
 					</li>
 				))}

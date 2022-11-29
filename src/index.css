@@ -7,7 +7,30 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background: rgb(49, 238, 227);
-	background: linear-gradient(211deg, rgba(49, 238, 227, 1) 0%, rgba(166, 33, 232, 1) 100%);
+	background: linear-gradient(211deg, rgb(255, 166, 49) 0%, rgb(232, 33, 149) 100%);
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f100;
+	margin: 10px 0px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgb(207, 207, 207);
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+	border-radius: 10px;
 }
 
 .drop-down-wrapper {
@@ -19,4 +42,8 @@ body {
 	align-content: center;
 	justify-content: center;
 	width: 300px;
+}
+
+*:focus {
+	outline: none;
 }

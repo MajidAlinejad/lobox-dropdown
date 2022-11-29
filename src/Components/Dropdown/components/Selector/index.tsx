@@ -4,10 +4,10 @@ import { FC, useEffect, useRef } from "react";
 import useSelectState from "./../../hooks/useSelectState";
 
 interface ISelectorType {
-	children: string;
+	placeholder: string;
 }
 
-const Selector: FC<ISelectorType> = ({ children }) => {
+const Selector: FC<ISelectorType> = ({ placeholder }) => {
 	const dispatch = useSelectDispatch();
 	const selectorRef = useRef<HTMLButtonElement>(null);
 	const { isOpen, selected } = useSelectState();
@@ -29,7 +29,7 @@ const Selector: FC<ISelectorType> = ({ children }) => {
 	return (
 		<>
 			<button className={classes.selector} ref={selectorRef} onClick={() => toggleDropDown()} onKeyDown={(e) => e.key === "ArrowDown" && toggleDropDown(true)} tabIndex={1}>
-				{selected ? selected.label : children}
+				{selected ? selected.label : placeholder}
 			</button>
 		</>
 	);
