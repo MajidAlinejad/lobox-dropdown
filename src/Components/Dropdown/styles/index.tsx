@@ -63,10 +63,11 @@ const useStyles = createUseStyles({
 		display: "flex",
 		width: "100%",
 		padding: "4px 5px",
+		alignItems: "center",
 		justifyContent: "space-between",
 		borderWidth: "0",
 		backgroundColor: "transparent",
-		color: "gray",
+		color: "#647ddf",
 	},
 });
 
